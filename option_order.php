@@ -6,7 +6,7 @@ add_action('admin_menu', 'my_cool_plugin_create_menu');
 function my_cool_plugin_create_menu() {
 
 	//create new top-level menu
-	add_menu_page('My Cool Plugin Settings', 'Cool Settings', 'administrator', __FILE__, 'my_cool_plugin_settings_page' , plugins_url('/images/icon.png', __FILE__) );
+	add_menu_page('My Cool Plugin Settings', '訂單查詢匯出', 'administrator', __FILE__, 'my_cool_plugin_settings_page' , plugins_url('/images/icon.png', __FILE__) );
 
 	//call register settings function
 	add_action( 'admin_init', 'register_my_cool_plugin_settings' );
