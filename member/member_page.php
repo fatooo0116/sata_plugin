@@ -157,7 +157,7 @@ function add_favorite_color_to_edit_account_form() {
         </label>
         </div>     
         
-        
+
         <div class="input_field">
             <div class="newline2">
             <div id="preview_img">
@@ -231,4 +231,17 @@ function save_favorite_color_account_details( $user_id ) {
         update_user_meta($user_id, 'recommender', $_POST['recommender']);
   
 
+}
+
+
+
+/**
+ * Step 3. Make it required
+ */
+add_filter('woocommerce_save_account_details_required_fields', 'misha_make_field_required');
+function misha_make_field_required( $required_fields ){
+
+	$required_fields['country_to_visit'] = 'Country you want to visit the most';
+	return $required_fields;
+	
 }
