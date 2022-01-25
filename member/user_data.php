@@ -76,6 +76,12 @@ function my_user_profile_edit_action($user) {
      margin-top:15px;
      width: 300px;;
    }
+   #sata_member .newline2{
+      margin-top:15px;     
+   }
+   #_unique_name88_button{
+      width: 80px;
+   }
 </style>
   
   <hr/>
@@ -222,11 +228,89 @@ function my_user_profile_edit_action($user) {
     <div class="input_field">
       <label for="sata_img">
         上傳圖檔 Size 300*300<br/>
-        <input type="text" id="sata_img"  name="sata_img" class="newline" />
+        <div class="newline2">
+          <div id="preview_img">
+              <?php if($sata_img){ 
+                        $url = wp_get_attachment_image_url($sata_img,'full');                       
+                ?>
+                  
+                  <img src="<?php echo $url; ?>" />
+              <?php } ?>
+          </div>
+          <input id="_unique_name88" class="form-control " name="sata_img" type="hidden" value="<?php echo $sata_img; ?>"/>
+          <input id="_unique_name88_button" class="button _unique_name_button" name="_unique_name_button" type="button" value="上傳圖檔" />
+          <input id="clear_img" value="清除"  class="button" type="button" />
+        </div>
       </label>
+
+
+
     </div>
 
+    <?php 
 
+      wp_enqueue_script('thickbox');
+      wp_enqueue_media();
+      wp_enqueue_script('media-upload');
+
+    ?>
+
+
+    <script>
+
+
+jQuery(document).ready(function($){
+    var _custom_media = true,
+        _orig_send_attachment = wp.media.editor.send.attachment;
+
+    $('._unique_name_button').click(function(e) {
+        var send_attachment_bkp = wp.media.editor.send.attachment;
+        var button = $(this);
+        var id = button.attr('id').replace('_button', '');
+        _custom_media = true;
+        wp.media.editor.send.attachment = function(props, attachment){
+            if ( _custom_media ) {
+          
+                $("#preview_img").html('<img src="'+attachment.url+'"/>');
+
+                $("#"+id).val(attachment.id);
+            } else {
+                return _orig_send_attachment.apply( this, [props, attachment] );
+            };
+        }
+
+        wp.media.editor.open(button);
+        return false;
+    });
+
+    $('.add_media2').on('click', function(){
+        _custom_media = false;
+    });
+
+
+    $('._unique_name_button2').click(function(e) {
+        var send_attachment_bkp = wp.media.editor.send.attachment;
+        var button = $(this);
+        var id = button.attr('id').replace('_button', '');
+        _custom_media = true;
+        wp.media.editor.send.attachment = function(props, attachment){
+            if ( _custom_media ) {
+                $("#"+id).val(attachment.url);
+            } else {
+                return _orig_send_attachment.apply( this, [props, attachment] );
+            };
+        }
+        wp.media.editor.open(button);
+        return false;
+    });
+
+    $("#clear_img").on("click",function(){
+        $("#preview_img").html('');
+        $("#_unique_name88").val('');
+    });
+});
+
+</script>
 
 
   </div>  
