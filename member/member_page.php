@@ -160,6 +160,7 @@ function add_favorite_color_to_edit_account_form() {
 
         <div class="input_field">
             <div class="newline2">
+                <label for="">專屬星盤</label>
             <div id="preview_img">
                 <?php if($sata_img){ 
                             $url = wp_get_attachment_image_url($sata_img,'full');                       
