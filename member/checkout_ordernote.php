@@ -97,6 +97,23 @@ function bbloomer_add_custom_checkout_field( $checkout ) {
                 <input type="radio" name="cert_name_type" id="tp4" value="n4"  <?php if($cert_name_type=='n4'){ echo 'checked';}  ?> > 中文拼音
             </label>
         </div>    
+
+
+
+        <div class="input_field">
+            <label for="" class="head">是否參加過 SATA 課程</label>
+            <label for="mp1">
+                <input type="checkbox"  id="mp1"   name="mb_type[]" value="m1"  <?php if(in_array('m1',$mb_type)){ echo 'checked'; } ?> > 非會員
+            </label>
+            <label for="mp2">
+                <input type="checkbox" id="mp2"  name="mb_type[]" value="m2"  <?php if(in_array('m2',$mb_type)){ echo 'checked'; } ?>  > SATA核心課程會員
+            </label>
+            <label for="mp3">
+                <input type="checkbox" id="mp3"  name="mb_type[]" value="m3"  <?php if(in_array('m3',$mb_type)){ echo 'checked'; } ?>  > SATA工作坊會員
+            </label>
+        </div>
+
+
         
         <div class="input_field">
             <label for="" class="head">你的占星程度</label>

@@ -16,7 +16,6 @@ Author URI: https://aloha-tech.com/
 
 /* Add  field to Wp User page */
 
-require "option_order.php";
 
 require "member/member_page.php";
 require "member/user_data.php";
