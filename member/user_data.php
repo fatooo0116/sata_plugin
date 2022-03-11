@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 add_action('show_user_profile', 'my_user_profile_edit_action');
 add_action('edit_user_profile', 'my_user_profile_edit_action');
@@ -36,13 +36,7 @@ function my_user_profile_edit_action($user) {
 
   $sata_img = (isset($user->sata_img) && $user->sata_img) ? $user->sata_img : '';
 
-
-  print_r($sata_sex);
-
- 
-  
 ?>
-
 <style>
   #sata_member{ 
     padding:10px 0px;
@@ -147,7 +141,7 @@ function my_user_profile_edit_action($user) {
 
     <div class="input_field">
       <label for="wechat_id">
-        微信 ID：  <span class="helper">(無微信ID請輸入0)</span><br/>
+        微信 ID：  <span class="helper">(無微信ID請輸入1)</span><br/>
         <input type="text" name="wechat_id" id="wechat_id"  class="newline"  value="<?php  echo $wechat_id; ?>" />
       </label>
     </div>
@@ -155,7 +149,7 @@ function my_user_profile_edit_action($user) {
 
     <div class="input_field">
       <label for="line_id">
-        Line ID： <span class="helper">(無Line ID請輸入0)</span><br/>
+        Line ID： <span class="helper">(無Line ID請輸入1)</span><br/>
         <input type="text" name="line_id" id="line_id" class="newline"  value="<?php  echo $line_id; ?>" />
       </label>
     </div>
@@ -179,7 +173,7 @@ function my_user_profile_edit_action($user) {
     <div class="input_field">
       <label for="bdate">
         出生日期（陽曆）（課程需要，如實填寫）： <span class="helper">(請按格式YYYY-MM-DD填寫)</span><br/>
-        <input type="text" id="bdate"  name="bdate" class="newline"  value="<?php  echo $bdate; ?>" />
+        <input type="date" id="bdate"  name="bdate" class="newline"  value="<?php  echo $bdate; ?>" />
       </label>
     </div>
 
@@ -187,7 +181,8 @@ function my_user_profile_edit_action($user) {
     <div class="input_field">
       <label for="btime">
         出生時間（課程需要，如實填寫）： <span class="helper">(精確到分，例如19:45)</span><br/>
-        <input type="text" id="btime"  name="btime"  value="<?php  echo $btime; ?>"  class="newline" />
+        
+        <input type="text" id="btime"  name="btime"    data-timepicker  value="<?php  echo $btime; ?>"  class="newline" />
       </label>
     </div>
 
@@ -196,13 +191,13 @@ function my_user_profile_edit_action($user) {
       <label for="time_exactly">
         時間準確性（課程需要，如實填寫）： <br/>
         <select name="time_exactly" id="time_exactly" class="newline">
-          <option value="t1" <?php if($time_exactly=='t1'){ echo 'checked'; } ?> >父母書面記錄/醫院出生記錄</option>
-          <option value="t2" <?php if($time_exactly=='t2'){ echo 'checked'; } ?> >父母記憶(偏差在15分鐘之內)</option>
-          <option value="t3" <?php if($time_exactly=='t3'){ echo 'checked'; } ?> >父母記憶(偏差在半個小時之內)</option>
-          <option value="t4" <?php if($time_exactly=='t4'){ echo 'checked'; } ?> >父母記憶(偏差在2個小時之內)</option>
-          <option value="t5" <?php if($time_exactly=='t5'){ echo 'checked'; } ?> >父母記憶(偏差在半天之內)</option>
-          <option value="t6" <?php if($time_exactly=='t6'){ echo 'checked'; } ?> >父母記憶(偏差在一天之內)</option>
-          <option value="t7" <?php if($time_exactly=='t7'){ echo 'checked'; } ?> >日期偏差在一天以上</option>
+          <option value="t1" <?php if($time_exactly=='t1'){ echo 'selected'; } ?> >父母書面記錄/醫院出生記錄</option>
+          <option value="t2" <?php if($time_exactly=='t2'){ echo 'selected'; } ?> >父母記憶(偏差在15分鐘之內)</option>
+          <option value="t3" <?php if($time_exactly=='t3'){ echo 'selected'; } ?> >父母記憶(偏差在半個小時之內)</option>
+          <option value="t4" <?php if($time_exactly=='t4'){ echo 'selected'; } ?> >父母記憶(偏差在2個小時之內)</option>
+          <option value="t5" <?php if($time_exactly=='t5'){ echo 'selected'; } ?> >父母記憶(偏差在半天之內)</option>
+          <option value="t6" <?php if($time_exactly=='t6'){ echo 'selected'; } ?> >父母記憶(偏差在一天之內)</option>
+          <option value="t7" <?php if($time_exactly=='t7'){ echo 'selected'; } ?> >日期偏差在一天以上</option>
         </select>
       </label>
     </div>
@@ -246,19 +241,12 @@ function my_user_profile_edit_action($user) {
 
 
     </div>
-
     <?php 
-
       wp_enqueue_script('thickbox');
       wp_enqueue_media();
       wp_enqueue_script('media-upload');
-
     ?>
-
-
     <script>
-
-
 jQuery(document).ready(function($){
     var _custom_media = true,
         _orig_send_attachment = wp.media.editor.send.attachment;
@@ -319,7 +307,6 @@ jQuery(document).ready(function($){
 }
 
 
-
 add_action('personal_options_update', 'my_user_profile_update_action');
 add_action('edit_user_profile_update', 'my_user_profile_update_action');
 function my_user_profile_update_action($user_id) {
@@ -347,4 +334,4 @@ function my_user_profile_update_action($user_id) {
   update_user_meta($user_id, 'recommender', $_POST['recommender']);
   update_user_meta($user_id, 'sata_img', $_POST['sata_img']);
 
-}
+}?>
